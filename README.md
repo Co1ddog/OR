@@ -1,9 +1,11 @@
-# Final Project: Airport Immigration Counter Staffing Optimization
+# Final Project: Data-Driven Airport Staffing Optimization: Using CBP Hourly Arrival Records and Shift-Specific Service Rates
 
 This project uses a mixed integer linear program to assign immigration counters during the Christmas peak season, based on hourly passenger arrivals and historic counter usage from `dataset_hourly.csv`. The core model and outputs live in `final_project.ipynb`, solved with Gurobi to produce shift-level staffing decisions and heatmaps.
 
 ## Dataset
 - Path: `dataset_hourly.csv`
+- Processed data: [Google Drive](https://drive.google.com/file/d/1amCHvZrjBibJNKprCrKVqfM9HW6w-_3V/view?usp=sharing), or github shown as `dataset_hourly.csv`.
+- Raw data: [Google Drive](https://docs.google.com/spreadsheets/d/15VRgBf5MWYKi_qHQQV2U2F-irzUBWZ8g/edit?usp=sharing&ouid=107932714686873281112&rtpof=true&sd=true), or also in [CBP Official Website](https://awt.cbp.gov/).
 - Columns:
   - `week_index`: Week number (1–5).
   - `day_index`: Day of week (1–7).
@@ -42,6 +44,7 @@ pip install pandas numpy matplotlib seaborn gurobipy
 5. Check the console for staffing results; heatmaps are saved to `plots_shift_level/`.
 
 ## Common adjustments
-- **Budget and penalties**: Adjust parameters such as `Budget_w`, `c_r`, `c_o`, and `alpha` in the notebook to reflect budget or backlog preferences.
-- **Service capacity**: If new service-rate data is available, update `Avg_BoothsHour_3yr` or modify the calculation of `mu`.
-- **Shift structure**: To change shift boundaries, edit `shift_map` and ensure the `Shift` column values stay consistent.
+- **Budget**: Adjust parameters budget such as `Budget_w`, `c_r`, `c_o` to other values.
+- **Weight**: Adjust `alpha` to reflect budget or backlog preferences.
+- **Service capacity**: If new service-rate data is available, update new dataframe to modify `Avg_PassengersHour_3yr`, `Avg_BoothsHour_3yr` or the value of `mu`.
+- **Shift structure**: To change shift boundaries, edit `shift_map` and ensure the `Shift` column in dataframe match the `shift_map`.
