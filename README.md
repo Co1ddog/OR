@@ -17,7 +17,10 @@ This project uses a mixed integer linear program to assign immigration counters 
 ## Model highlights (`final_project.ipynb`)
 - **Demand and service rate**: Build hourly demand `A` for each (week, day, shift, hour) and estimate per-counter service rate `mu` from `Avg_BoothsHour_3yr`.
 - **Decision variables**:
-  - `x`: Regular counters; `o`: Overtime counters; `u`: Served passengers; `b`: Remaining passengers at shift end.
+  - `x`: Regular counters;
+  - `o`: Overtime counters;
+  - `u`: Served passengers;
+  - `b`: Remaining passengers at shift end (backlog).
 - **Cost and objective**: Minimize total cost combining regular/overtime wages and backlog penalty. Solver settings allow 1% MIP gap and a 10-minute time limit.
 - **Outputs**:
   - Console printout of staffing and backlog by hour.
